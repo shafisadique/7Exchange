@@ -1,0 +1,196 @@
+<div class="container" style="margin: auto;">
+    <div class="card card-primary">
+      <form class="forms-sample" [formGroup]="subAdminUpdateForm">
+  
+        <div class="card-body">
+          <div class="row">
+            <!-- Basic Info Section -->
+            <div class="col-md-6 grid-margin">
+              <div class="card-header bg-primary btn-air-dark">
+                <h5>Basic Info</h5>
+              </div>
+  
+              <div class="card-body card" style="margin-right:1px solid black;">
+                <div class="mb-3">
+                  <label class="form-label" style="font-weight: bold;">Code</label>
+                  <input type="text" [value]="code" class="form-control input-air-primary" readonly placeholder="Auto Generated" style="background-color:#e9ecef;">
+                </div>
+  
+                <div class="mb-3">
+                  <label style="font-weight: bold;" class="form-label">Name *</label>
+                  <input type="text" class="form-control input-air-primary" formControlName="name" placeholder="Name" required [ngClass]="{'is-invalid': subAdminUpdateForm.get('name')?.touched && subAdminUpdateForm.get('name')?.invalid}" />
+                  <div *ngIf="subAdminUpdateForm.get('name')?.touched || submitted">
+                    <small *ngIf="subAdminUpdateForm.get('name')?.hasError('required')" style="color:red;">Name is required.</small>
+                    <small *ngIf="subAdminUpdateForm.get('name')?.hasError('minlength')" style="color:red;">Name must be at least 3 characters.</small>
+                    <small *ngIf="subAdminUpdateForm.get('name')?.hasError('maxlength')" style="color:red;">Name cannot exceed 30 characters.</small>
+                    <small *ngIf="subAdminUpdateForm.get('name')?.hasError('pattern')" style="color:red;">Invalid pattern for Name.</small>
+                  </div>
+                </div>
+  
+                <div class="mb-3">
+                  <label style="font-weight: bold;" class="form-label">Reference*</label>
+                  <input type="text" class="form-control input-air-primary" formControlName="reference" placeholder="Reference" required [ngClass]="{'is-invalid': subAdminUpdateForm.get('reference')?.touched && subAdminUpdateForm.get('reference')?.invalid}" />
+                  <div *ngIf="subAdminUpdateForm.get('reference')?.touched || submitted">
+                    <small *ngIf="subAdminUpdateForm.get('reference')?.hasError('required')" style="color:red;">Reference is required.</small>
+                    <small *ngIf="subAdminUpdateForm.get('reference')?.hasError('minlength')" style="color:red;">Reference must be at least 3 characters.</small>
+                    <small *ngIf="subAdminUpdateForm.get('reference')?.hasError('pattern')" style="color:red;">Invalid pattern for Reference.</small>
+                  </div>
+                </div>
+  
+                <div class="mb-3">
+                  <label style="font-weight: bold;" class="form-label">Password *</label>
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control input-air-primary" formControlName="password" placeholder="Password" required readonly [ngClass]="{'is-invalid': subAdminUpdateForm.get('password')?.touched && subAdminUpdateForm.get('password')?.invalid}" />
+                    <button class="input-group-text btn-primary" type="button" (click)="generatePassword()" style="background-color:#17a2b8; color: whitesmoke;">Generate Password</button>
+                  </div>
+                  <div *ngIf="subAdminUpdateForm.get('password')?.touched || submitted">
+                    <small *ngIf="subAdminUpdateForm.get('password')?.hasError('required')" style="color:red;">Password is required.</small>
+                    <small *ngIf="subAdminUpdateForm.get('password')?.hasError('minlength')" style="color:red;">Password must be at least 6 characters.</small>
+                    <small *ngIf="subAdminUpdateForm.get('password')?.hasError('maxlength')" style="color:red;">Password cannot exceed 60 characters.</small>
+                  </div>
+                </div>
+  
+                <div class="mb-3">
+                  <label style="font-weight: bold;" class="form-label">Contact No</label>
+                  <input type="text" class="form-control input-air-primary" formControlName="contactNo" placeholder="Contact No" required [ngClass]="{'is-invalid': subAdminUpdateForm.get('contactNo')?.touched && subAdminUpdateForm.get('contactNo')?.invalid}" />
+                  <div *ngIf="subAdminUpdateForm.get('contactNo')?.touched || submitted">
+                    <small *ngIf="subAdminUpdateForm.get('contactNo')?.hasError('required')" style="color:red;">Contact number is required.</small>
+                    <small *ngIf="subAdminUpdateForm.get('contactNo')?.hasError('maxlength')" style="color:red;">Contact number cannot exceed 11 digits.</small>
+                    <small *ngIf="subAdminUpdateForm.get('contactNo')?.hasError('pattern')" style="color:red;">Only numbers are allowed for the contact number.</small>
+                  </div>
+                </div>
+  
+                <div class="mb-3">
+                  <label style="font-weight: bold;" class="form-label">Casino Check</label>
+                  <select class="form-select input-air-primary" formControlName="casinoCheck" style="width: 100%;">
+                    <option [value]="true">True</option>
+                    <option [value]="false">False</option>
+                  </select>
+                </div>
+  
+                <div class="mb-3">
+                  <label style="font-weight: bold;" class="form-label">Status</label>
+                  <select class="form-select  input-air-primary" formControlName="status" style="width: 100%;">
+                    <option [value]="true">True</option>
+                    <option [value]="false">False</option>
+                  </select>
+                </div>
+  
+                <div class="mb-3">
+                  <label style="font-weight: bold;" class="form-label">Limit Update</label>
+                  <select class="form-select" formControlName="limitUpdate" style="width: 100%;">
+                    <option [value]="true">True</option>
+                    <option [value]="false">False</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+  
+            <!-- Share and Commission Section -->
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card-header bg-danger btn-air-dark">
+                <h5>Share and Commission</h5>
+              </div>
+  
+              <div class="card-body card" style="margin-right:1px solid black;">
+                <div class="row">
+                  <div class="col-sm-6 mb-3">
+                    <label style="font-weight: bold;" class="form-label">Sub Admin Share</label>
+                    <input type="number" class="form-control input-air-primary" formControlName="share" placeholder="Share" required
+                           [ngClass]="{'is-invalid': subAdminUpdateForm.get('share')?.touched && subAdminUpdateForm.get('share')?.invalid}" />
+                    <div *ngIf="subAdminUpdateForm.get('share')?.touched || submitted">
+                      <small *ngIf="subAdminUpdateForm.get('share')?.hasError('required')" style="color:red;">Share is required.</small>
+                      <small *ngIf="subAdminUpdateForm.get('share')?.hasError('min')" style="color:red;">Share must be greater than or equal to 0.</small>
+                      <small *ngIf="subAdminUpdateForm.get('share')?.hasError('max')" style="color:red;">Share must be less than or equal to {{subAdmin?.share}}.</small>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 mb-3">
+                    <label style="font-weight: bold;" class="form-label">My Share</label>
+                    <input type="number" class="form-control input-air-primary" disabled [value]="subAdmin?.share" placeholder="0.0">
+                  </div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-sm-6 mb-3">
+                    <label style="font-weight: bold;" class="form-label">Casino Share</label>
+                    <input type="number" class="form-control input-air-primary" formControlName="casinoShare" placeholder="Casino Share" required [ngClass]="{'is-invalid': subAdminUpdateForm.get('casinoShare')?.touched && subAdminUpdateForm.get('casinoShare')?.invalid}" />
+                    <div *ngIf="subAdminUpdateForm.get('casinoShare')?.touched || submitted">
+                      <small *ngIf="subAdminUpdateForm.get('casinoShare')?.hasError('required')" style="color:red;">Casino share is required.</small>
+                      <small *ngIf="subAdminUpdateForm.get('casinoShare')?.hasError('max')" style="color:red;">Casino share must be less than or equal to 100.</small>
+                      <small *ngIf="serverErrors?.casinoShare && serverErrors != null" style="color: red;">{{ serverErrors?.casinoShare }}</small>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 mb-3">
+                    <label style="font-weight: bold;" class="form-label">My Casino Share</label>
+                    <input type="number" class="form-control" disabled [value]="serverErrors?.casinoShare" placeholder="0.0">
+                  </div>
+                </div>
+  
+                <div class="row mb-3">
+                  <div class="col-sm-6 mb-3">
+                    <label style="font-weight: bold;" class="form-label">Match Commission</label>
+                    <input type="number" class="form-control input-air-primary" formControlName="mc" placeholder="Match Commission" required
+                           [ngClass]="{'is-invalid': subAdminUpdateForm.get('mc')?.touched && subAdminUpdateForm.get('mc')?.invalid}" />
+                    <div *ngIf="subAdminUpdateForm.get('mc')?.touched || submitted">
+                      <small *ngIf="subAdminUpdateForm.get('mc')?.hasError('required')" style="color:red;">Match Commission is required.</small>
+                      <small *ngIf="subAdminUpdateForm.get('mc')?.hasError('max')" style="color:red;">Match Commission must be less than or equal to 2.</small>
+                      <small *ngIf="serverErrors?.mc && serverErrors != null" style="color: red;">{{ serverErrors?.mc }}</small>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 mb-3">
+                    <label style="font-weight: bold;" class="form-label">My Match Commission</label>
+                    <input type="text" class="form-control input-air-primary" disabled [value]="serverErrors?.sc" placeholder="2.0">
+                  </div>
+                </div>
+  
+                <div class="row mb-3">
+                  <div class="col-sm-6 mb-3">
+                    <label style="font-weight: bold;" class="form-label">Session Commission</label>
+                    <input type="number" class="form-control input-air-primary" formControlName="sc" placeholder="Session Commission" required
+                           [ngClass]="{'is-invalid': subAdminUpdateForm.get('sc')?.touched && subAdminUpdateForm.get('sc')?.invalid}" />
+                    <div *ngIf="subAdminUpdateForm.get('sc')?.touched || submitted">
+                      <small *ngIf="subAdminUpdateForm.get('sc')?.hasError('required')" style="color:red;">Session Commission is required.</small>
+                      <small *ngIf="subAdminUpdateForm.get('sc')?.hasError('max')" style="color:red;">Session Commission must be less than or equal to 3.</small>
+                      <small *ngIf="serverErrors?.sc && serverErrors != null" style="color: red;">{{ serverErrors?.sc }}</small>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 mb-3">
+                    <label style="font-weight: bold;" class="form-label">My Session Commission</label>
+                    <input type="text" class="form-control input-air-primary" disabled [value]="serverErrors?.sc" placeholder="3.0">
+                  </div>
+                </div>
+  
+                <div class="row mb-3">
+                  <div class="col-sm-6 mb-3">
+                    <label style="font-weight: bold;" class="form-label">Casino Commission</label>
+                    <input type="number" class="form-control input-air-primary" formControlName="cc" placeholder="Casino Commission" required
+                           [ngClass]="{'is-invalid': subAdminUpdateForm.get('cc')?.touched && subAdminUpdateForm.get('cc')?.invalid}" />
+                    <div *ngIf="subAdminUpdateForm.get('cc')?.touched || submitted">
+                      <small *ngIf="subAdminUpdateForm.get('cc')?.hasError('required')" style="color:red;">Casino Commission is required.</small>
+                      <small *ngIf="subAdminUpdateForm.get('cc')?.hasError('max')" style="color:red;">Casino Commission must be less than or equal to 2.</small>
+                      <small *ngIf="serverErrors?.cc && serverErrors != null" style="color: red;">{{ serverErrors?.cc }}</small>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 mb-3">
+                    <label style="font-weight: bold;" class="form-label">My Casino Commission</label>
+                    <input type="text" class="form-control input-air-primary" disabled [value]="serverErrors?.cc" placeholder="2.0">
+                  </div>
+                </div>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="card-footer d-flex justify-content-between">
+          <a routerLink="/sub-admin/sub-admin-details" class="btn btn-primary me-2">Cancel</a>
+          <button type="button" class="btn btn-primary me-2" (click)="onSubmit()">Update Sub Admin</button>
+          <div class="spinner-border" role="status" *ngIf="isLoading">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+        
+      </form>
+    </div>
+  </div>
+  

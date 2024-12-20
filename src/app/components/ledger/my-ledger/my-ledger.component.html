@@ -1,0 +1,135 @@
+<div class="row">
+    <div class="col-md-12 stretch-card">
+      <div class="card">
+        <div class="d-flex justify-content-center align-items-center" style="height: 100vh;" *ngIf="isBodyLoading">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+        <div class="card-header col-md-12 col-sm-12">
+          <div class="card shadow p-3">
+            <div class="row">
+              <div class="col-md-3 col-sm-6 mb-3">
+                <label class="mr-2">Select Ledger Type</label>
+                <div ngbDropdown class="input-group w-100">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Select or search..."
+                    [(ngModel)]="searchQuery"
+                    ngbDropdownToggle
+                    (focus)="onFocus()"
+                    (input)="onSearchChange(searchQuery)"
+                    aria-labelledby="searchDropdown"
+                  />
+                  <div ngbDropdownMenu aria-labelledby="searchDropdown" class="w-100">
+                    <div *ngIf="filteredOptions.length > 0">
+                      <button class="dropdown-item" (click)="onSelectOption('All')">All</button>
+                      <button class="dropdown-item" *ngFor="let option of filteredOptions" (click)="onSelectOption(option)">{{ option }}</button>
+                    </div>
+                    <div *ngIf="filteredOptions.length === 0 && searchQuery">
+                      <span class="dropdown-item text-muted">No results found</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              <!-- Date From -->
+              <div class="col-md-3 col-sm-6 mb-3">
+                <div class="form-group mb-0">
+                  <label class="mr-2">Date from</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="yyyy-mm-dd" aria-label="Date from" ngbDatepicker #from="ngbDatepicker">
+                    <div class="input-group-append" (click)="from.toggle()">
+                      <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              <!-- Date To -->
+              <div class="col-md-3 col-sm-6 mb-3">
+                <div class="form-group mb-0">
+                  <label class="mr-2">Date To</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="yyyy-mm-dd" aria-label="Date to" ngbDatepicker #to="ngbDatepicker">
+                    <div class="input-group-append" (click)="to.toggle()">
+                      <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              <!-- Submit Button -->
+              <div class="col-md-3 col-sm-6 mb-3">
+                <button class="btn btn-primary w-100 mt-4">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Date</th>
+                  <th>Collection Name</th>
+                  <th>Debit</th>
+                  <th>Credit</th>
+                  <th>Balance</th>
+                  <th>Type</th>
+                  <th>Payment Type</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colspan="3" style="color: blueviolet; font-size: large; text-align: center;">Total Amount</td>
+                  <td style="font-size: 20px; font-weight: bold;">{{totalDebit}}</td>
+                  <td style="font-size: 20px; font-weight: bold;">{{totalCredit}}</td>
+                  <td [ngClass]="totalBal >= 0 ? 'positive-balance' : 'negative-balance'">
+                    {{ totalBal }}
+                  </td>
+                  
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr *ngFor="let row of data; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ row.date }}</td>
+                  <td>{{ row.collection }}</td>
+                  <td>{{ row.debit }}</td>
+                  <td>{{ row.credit }}</td>
+                  <td>{{ row.balance }}</td>
+                  <td>{{ row.type }}</td>
+                  <td>{{ row.paymentType }}</td>
+                  <td>{{ row.remark }}</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+  
+        <div class="card-footer" *ngIf="isBodyLoading == false">
+          <div class="right">
+            <!-- Pagination or other footer content -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

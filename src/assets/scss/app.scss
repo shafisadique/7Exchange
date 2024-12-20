@@ -1,0 +1,47 @@
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+
+
+@import "../scss/style.scss";
+@import "./theme/responsive";
+@import "./theme/dashboard_default";
+@import "./theme/variables";
+
+
+@import"../../../node_modules/ngx-owl-carousel-o/lib/styles/scss/owl.theme.default.scss";
+@import "../../../node_modules/ngx-owl-carousel-o/lib/styles/scss/owl.carousel.scss";
+@import "chartist/chartist-settings";
+@import "chartist/chartist";
+
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+@import "../node_modules/flatpickr/dist/flatpickr.css";
+
+
+@import "sticky/sticky.scss";
+@import "sweetalert/sweetalert2.scss";
+@import "todo/todo";
+@import "../node_modules/ngx-toastr/toastr.css";
+@import "leaflet/dist/leaflet.css";
+@import "dropzone/dist/min/dropzone.min.css";
+
+
+.table-responsive{
+    white-space: nowrap;
+
+}
+.card-header{
+    // height: 0px;
+    // border-bottom: none !important;
+    padding-top:20px !important;
+    padding-bottom:20px !important;
+}
+
+.card-body{
+    padding: 10px !important;
+}
+th,td{
+    font-family: 'Roboto',sans-serif !important;
+}
+h3,h5{
+    font-family: 'Roboto',sans-serif !important;
+}
+// @import "~dragula/dist/dragula.css";

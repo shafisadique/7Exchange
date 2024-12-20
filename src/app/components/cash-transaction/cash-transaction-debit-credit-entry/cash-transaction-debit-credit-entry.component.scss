@@ -1,0 +1,27 @@
+select.form-select {
+    margin: 0 !important;
+    font-size: 15px;
+    width: 100%;
+}
+.form-label{
+    margin-bottom: 5px !important;
+}
+.form-control{
+    width: 100%;
+}
+
+.dropdown-scroll {
+    max-height: 200px; /* Set the maximum height you want */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.positive-balance {
+    color: blue !important;
+    font-size: 20px; font-weight: bold
+  }
+  
+  .negative-balance {
+    color: red !important;
+    font-size: 20px; font-weight: bold
+  }
+  

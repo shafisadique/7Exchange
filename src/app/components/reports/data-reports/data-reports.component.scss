@@ -1,0 +1,14 @@
+select.form-select {
+    margin: 0 !important;
+    font-size: 15px;
+    width: 100%;
+}
+.form-label{
+    margin-bottom: 5px !important;
+}
+
+
+.dropdown-scroll {
+    max-height: 200px; /* Set the maximum height you want */
+    overflow-y: auto; /* Enable vertical scrolling */
+}

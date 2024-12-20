@@ -1,0 +1,73 @@
+<div class="row" >
+  <div class="container" style="margin: auto;" >
+    <div class="col-md-12 stretch-card">
+      <div class="card">
+       
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped table-sm">
+              <thead>
+              <tr>
+                <th style="text-align: center;">#</th>
+                <th>SNo</th>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Date Time</th>
+                <th>Match Type</th>
+                <th>Declare</th>
+                <th>Won By</th>
+                <th>P/M</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of completeGames">
+                  <td >
+                      <div class="dropdown">
+                        <div ngbDropdown >
+                          <button class="btn btn-link " id="dropdownButtonLg" ngbDropdownToggle style="height: auto;"></button>
+                          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                            <button ngbDropdownItem (click)="matchPosition(data.id)">Match & Session Plus Minus Report</button>
+                            <button ngbDropdownItem (click)="displayMatchSession(data.id)">Display Match & Session Bets</button>
+                            <button ngbDropdownItem (click)="displayMatchBets(data.id)">Display Match Bets</button>
+                            <button ngbDropdownItem (click)="viewSessionReports(data.id)">View Session Reports</button>
+                          </div>
+                        </div>
+                      </div>
+
+                  </td>
+                  <td >{{data.SNo}}</td>
+                  <td>{{data.Code}}</td>
+                  <td class="break-word">{{data.Name}}</td>
+                  <td>{{data.DateTime}}</td>
+                  <td>{{data.MatchType}}</td>
+                  <td>{{data.Declare}}</td>
+                  <td>{{data.WonBy}}</td>
+                  <td>{{data.PlusMinus}}</td>
+                </tr>
+              </tbody>
+              <tfoot>
+              <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+
+              </tr>
+              </tfoot>
+            </table>
+          </div>
+
+        </div>
+        <div class="card-footer">
+          <div class="right">
+            <!-- <ngb-pagination [collectionSize]="data?.data.totalElements" [pageSize]="data?.data.size"
+                            [page]="(data?.data.number+1)" [maxSize]="data?.data.totalPages" [rotate]="true"
+                            (pageChange)="loadMasterData($event)" [boundaryLinks]="false"></ngb-pagination>
+          </div>'' -->
+        </div>
+      </div>
+    </div>
+  </div>

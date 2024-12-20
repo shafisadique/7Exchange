@@ -1,0 +1,392 @@
+<div class="container-fluid" style="margin: auto;">
+   
+  
+    <div class="card card-primary">
+        <!-- <h5>Modify Agent</h5>  -->
+     
+    <form class="forms-sample" [formGroup]="superUpdateForm" >
+           
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 grid-margin" >
+                            <div class="card-header bg-primary btn-air-dark">
+                                <h5>Basic Info</h5>
+                        </div>
+  
+                            <div class="card-body card" style="margin-right:1px solid black ;  ">
+                                <div class="mb-3">
+                                    <label class="form-label" style="font-weight: bold;">Code</label>
+                                    <input type="text" formControlName="code" class="form-control" autocomplete="off"
+                                     readonly="true" placeholder="Auto Generated" style="background-color:#e9ecef;">
+                                </div>
+  
+                                <div class="mb-3">
+                                  <label style="font-weight: bold;" class="form-label">Name *</label>
+                                  <input type="text" class="form-control"
+                                         [ngClass]="superUpdateForm.get('name')?.touched && superUpdateForm.get('name')?.hasError('required') ? 'is-invalid' : ''"
+                                         formControlName="name" autocomplete="off"
+                                         placeholder="Name" required />
+  
+                                  <div *ngIf="superUpdateForm.get('name')?.hasError('required') && (superUpdateForm.get('name')?.touched || submitted)"
+                                       style="color:red">
+                                      Name is required.
+                                  </div>
+                                  <div
+                                          *ngIf="superUpdateForm.get('name')?.hasError('minlength') && superUpdateForm.get('name')?.touched"
+                                          style="color:red">
+                                      Name must be at least 3 characters.
+                                  </div>
+                                  <div
+                                          *ngIf="superUpdateForm.get('name')?.hasError('maxlength') && superUpdateForm.get('name')?.touched"
+                                          style="color:red">
+                                      Name cannot exceed 30 characters.
+                                  </div>
+                                  <div *ngIf="superUpdateForm.get('name')?.hasError('pattern') && superUpdateForm.get('name')?.touched"
+                                       style="color:red">
+                                      Invalid pattern for Name.
+                                  </div>
+                              </div>
+  
+                                <div class="mb-3">
+                                    <label style="font-weight: bold;" class="form-label">Reference*</label>
+                                    <input type="text" class="form-control"
+                                    [ngClass]="superUpdateForm.get('reference')?.touched && superUpdateForm.get('reference')?.hasError('required') ? 'is-invalid' : ''"
+                                    formControlName="reference" autocomplete="off" placeholder="Reference" required />
+  
+                             <div *ngIf="superUpdateForm.get('reference')?.hasError('required') && (superUpdateForm.get('reference')?.touched || submitted)"
+                                  style="color: red">
+                               Reference is required.
+                             </div>
+  
+                             <div
+                             *ngIf="superUpdateForm.get('reference')?.hasError('minlength') && superUpdateForm.get('reference')?.touched"
+                             style="color:red">
+                             Reference must be at least 3 characters.
+                     </div>
+                                    <div
+                                            *ngIf="superUpdateForm.get('reference')?.hasError('pattern') && superUpdateForm.get('reference')?.touched"
+                                            style="color:red">
+                                        Invalid pattern for Reference.
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label style="font-weight: bold;" class="form-label">Password *</label>
+                                    <div class="input-group mb-3">
+                                      <input type="text" class="form-control"
+                                      [ngClass]="superUpdateForm.get('reference')?.touched && superUpdateForm.get('password')?.hasError('required') ? 'is-invalid' : ''"
+                                      formControlName="password" autocomplete="off" placeholder="Password" required readonly/>
+                                        <button class="input-group-text btn-primary" id="basic-addon2"
+                                                type="button" (click)="generatePassword()"
+                                                style="background-color:#17a2b8 ;color: whitesmoke;">Generate Password
+                                        </button>
+                                    </div>
+                                    
+                                    <!-- <div
+                                            *ngIf="superUpdateForm.get('password')?.hasError('required') && superUpdateForm.get('password')?.touched && submitted"
+                                            style="color:red">
+                                        Password is required.
+                                    </div> -->
+                                    <div *ngIf="superUpdateForm.get('password')?.hasError('required') && (superUpdateForm.get('password')?.touched || submitted)"
+                                    style="color: red">
+                                    Password is required.
+                               </div>
+                                    <!-- <div
+                                            *ngIf="superUpdateForm.get('password')?.hasError('minlength') && superUpdateForm.get('password')?.touched && submitted"
+                                            style="color: red;">
+                                        Password must be at least 6 characters.
+                                    </div> -->
+                                    <div
+                                    *ngIf="superUpdateForm.get('password')?.hasError('minlength') && superUpdateForm.get('password')?.touched"
+                                    style="color:red">
+                                    Password must be at least 6 characters..
+                            </div>
+  
+                                    <div
+                                    *ngIf="superUpdateForm.get('password')?.hasError('maxlength') && superUpdateForm.get('password')?.touched"
+                                    style="color:red">
+                                    Password cannot exceed 60 characters.
+                            </div>
+  
+                                </div>
+                                <div class="mb-3">
+                                    <label style="font-weight: bold;" class="form-label">Contact No</label>
+                                    <input type="text" class="form-control"
+                                    [ngClass]="superUpdateForm.get('contactNo')?.touched && superUpdateForm.get('contactNo')?.hasError('required') ? 'is-invalid' : ''"
+                                    formControlName="contactNo" autocomplete="off" placeholder="contactNo" required />
+  
+                                    <div *ngIf="superUpdateForm.get('contactNo')?.hasError('required') && (superUpdateForm.get('password')?.touched || submitted)"
+                                    style="color: red">
+                                    Contact number is required.
+                               </div>
+                               <div
+                               *ngIf="superUpdateForm.get('contactNo')?.hasError('maxlength') && superUpdateForm.get('contactNo')?.touched"
+                               style="color:red">
+                               Contact number cannot exceed 11 digits.
+                       </div>
+  
+                                    <div
+                                            *ngIf="superUpdateForm.get('contactNo')?.hasError('pattern') && superUpdateForm.get('contactNo')?.touched"
+                                            style="color: red;">
+                                        Only numbers are allowed for the contact number.
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                  <label style="font-weight: bold;" class="form-label">Casino Play</label>
+                                  <select class="form-select " aria-label="Default select example"  formControlName="casinoCheck" style="width: 100%;">
+                                    <option [value]="true">Yes</option>
+                                    <option [value]="false">No</option>
+                                  </select>
+                                </div>
+                                <!-- <div class="mb-3">
+                                  <label style="font-weight: bold;" class="form-label">International Casino Check</label>
+                                  <select class="form-select" aria-label="Default select example"  formControlName="icCheck" style="width: 100%;">
+                                    <option [value]="true">Yes</option>
+                                    <option [value]="false">No</option>
+                                  </select>
+                                </div> -->
+  
+                            </div>
+                        </div>
+  
+                    <div class="col-md-6 grid-margin stretch-card">
+                            <div class="card-header bg-danger btn-air-dark">
+                                <h5>Share and Commission</h5>
+                        </div>
+                               
+                            <div class="card-body card" style="margin-right:1px solid black ;">
+
+                                <div class="row">
+                                    <div class="col-sm-4 col-md-4">
+                                        <div class="mb-3">
+                                            <label style="font-weight: bold;" class="form-label">Share</label>
+                                            
+                                                   <input type="number" class="form-control"
+                                                   [ngClass]="superUpdateForm.get('share')?.touched  && superUpdateForm.get('share')?.hasError('required') ? 'is-invalid' : ''"
+                                                   formControlName="share" autocomplete="off" placeholder="Share " required />
+  
+                                            <div
+                                                    *ngIf="superUpdateForm.get('share')?.hasError('required') && (superUpdateForm.get('share')?.touched||submitted)"
+                                                    style="color:red">
+                                                Share must be greater than or equal to 0.
+                                            </div>
+                                            <div
+                                                    *ngIf="superUpdateForm.get('share')?.hasError('min') && superUpdateForm.get('share')?.touched"
+                                                    style="color:red">
+                                                Share must be greater than or equal to 0.
+                                            </div>
+                                            <div
+                                                    *ngIf="superUpdateForm.get('share')?.hasError('max') && superUpdateForm.get('share')?.touched"
+                                                    style="color:red">
+                                                Share must be less than or equal to {{super?.share}}.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label style="font-weight: bold;" class="form-label">My Share On Super</label>
+                                        <input type="number" class="form-control" fornControlName="shareMaster" autocomplete="off"
+                                        [value]="super?.shareMaster" placeholder="0.0">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label style="font-weight: bold;" class="form-label">My Share</label>
+                                        <input type="number" class="form-control" disabled autocomplete="off"
+                                        [value]="super?.shareMaster" placeholder="0.0">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class=" col-md-4 col-sm-4">
+                                        <div class="mb-3">
+                                            <label style="font-weight: bold;" class="form-label">Casino Share</label>
+  
+                                                   <input type="number" class="form-control"
+                                                   [ngClass]="superUpdateForm.get('casinoShare')?.touched && superUpdateForm.get('casinoShare')?.hasError('required') ? 'is-invalid' : ''"
+                                                   formControlName="casinoShare" autocomplete="off" placeholder="Casino Share " required />
+                                            <div
+                                                    *ngIf="superUpdateForm.get('casinoShare')?.hasError('required') && (superUpdateForm.get('casinoShare')?.touched ||submitted)"
+                                                    style="color:red">
+                                                Casino share must be greater than or equal to 0.
+                                            </div>
+                                            <div
+                                                    *ngIf="superUpdateForm.get('casinoShare')?.hasError('max') && superUpdateForm.get('casinoShare')?.touched"
+                                                    style="color:red">
+                                                Casino share must be less than or equal to 100.
+                                            </div>
+  
+                                            <div *ngIf="superUpdateForm.get('casinoShare')?.hasError('serverError')" class="invalid-feedback">
+                                              {{ superUpdateForm.get('casinoShare')?.getError('serverError') }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4">
+                                        <label style="font-weight: bold;" class="form-label"> My Casino Share On Super</label>
+                                        <input type="number" class="form-control" formControlName="casinoShareMaster" autocomplete="off"
+                                        [value]="super?.casinoShareMaster" placeholder="0.0">
+                                    </div>
+
+                                    <div class="col-md-4 col-sm-4">
+                                        <label style="font-weight: bold;" class="form-label"> My Casino Share</label>
+                                        <input type="number" class="form-control" disabled autocomplete="off"
+                                        [value]="super?.casinoShareMaster" placeholder="0.0">
+                                    </div>
+                                </div>
+                                <!-- <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label style="font-weight: bold;" class="form-label">International Casino
+                                                Share</label>
+                                                   <input type="number" class="form-control"
+                                                   [ngClass]="superUpdateForm.get('icShare')?.touched && superUpdateForm.get('icShare')?.hasError('required') ? 'is-invalid' : ''"
+                                                   formControlName="icShare" autocomplete="off" placeholder="International Casino Share " required />
+  
+                                            <div
+                                                    *ngIf="superUpdateForm.get('icShare')?.hasError('required') && (superUpdateForm.get('icShare')?.touched || submitted) "
+                                                    style="color:red">
+                                                Casino share must be greater than or equal to 0.
+                                            </div>
+                                            <div
+                                                    *ngIf="superUpdateForm.get('icShare')?.hasError('max') && superUpdateForm.get('icShare')?.touched"
+                                                    style="color:red">
+                                                Casino share must be less than or equal to 100.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: bold;" class="form-label"> My International Casino
+                                            Share</label>
+                                        <input type="number" class="form-control" disabled autocomplete="off"
+                                        [value]="serverErrors?.icShare" placeholder="0.0">
+  
+                                    </div>
+                                </div> -->
+                                <!-- <div class="row mb-3">
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: bold;" class="form-label">Mobile Share</label>
+                                               <input type="number" class="form-control"
+                                                   [ngClass]="superUpdateForm.get('mobileShare')?.touched && superUpdateForm.get('mobileShare')?.hasError('required') ? 'is-invalid' : ''"
+                                                   formControlName="mobileShare" autocomplete="off" placeholder="International Casino Share " required />
+                                        <div
+                                                *ngIf="superUpdateForm.get('mobileShare')?.hasError('required') && (superUpdateForm.get('mobileShare')?.touched||submitted)"
+                                                style="color: red;">
+                                            Mobile share must be greater than or equal to 0.
+                                        </div>
+                                        <div
+                                                *ngIf="superUpdateForm.get('mobileShare')?.hasError('max') && superUpdateForm.get('mobileShare')?.touched"
+                                                style="color: red;">
+                                            Mobile share must be less than or equal to 100.
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: bold;" class="form-label">My Mobile Share</label>
+                                        <input type="text" class="form-control" disabled autocomplete="off"
+                                        [value]="serverErrors?.mobileShare" placeholder="0.0">
+  
+                                    </div>
+                                </div> -->
+                                <div class="row mb-3">
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: bold;" class="form-label">Match Commission</label>
+                                        <!-- <input type="text" class="form-control" formControlName="mc" autocomplete="off"
+                                               placeholder="Mathc Commission"> -->
+                                               <input type="number" class="form-control"
+                                               [ngClass]="superUpdateForm.get('mc')?.touched && superUpdateForm.get('mc')?.hasError('required') ? 'is-invalid' : ''"
+                                               formControlName="mc" autocomplete="off" placeholder="Match Commission" required />
+  
+                                        <div *ngIf="superUpdateForm.get('mc')?.hasError('required') && (superUpdateForm.get('mc')?.touched|| submitted)"
+                                             style="color: red;">
+                                            Match Commission must be greater than or equal to 0.
+                                        </div>
+                                        <div *ngIf="superUpdateForm.get('mc')?.hasError('max') && superUpdateForm.get('mc')?.touched"
+                                             style="color: red;">
+                                            Match Commission must be less than or equal to 2.
+                                        </div>
+                                        <div *ngIf="serverErrors?.mc" class="server-error" style="color: red;">
+                                            {{ serverErrors?.mc }}
+                                          </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: bold;" class="form-label">My Match Commission</label>
+                                        <input type="text" class="form-control" disabled autocomplete="off" [value]="super?.mcMaster"
+                                               placeholder="2.0">
+  
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: bold;" class="form-label">Session Commission</label>
+                                        <!-- <input type="text" class="form-control" formControlName="sc" autocomplete="off"
+                                               placeholder="Session Commission"> -->
+                                               <input type="number" class="form-control"
+                                               [ngClass]="superUpdateForm.get('sc')?.touched && superUpdateForm.get('sc')?.hasError('required') ? 'is-invalid' : ''"
+                                               formControlName="sc" autocomplete="off" placeholder="Session Commission" required />
+  
+                                        <div *ngIf="superUpdateForm.get('sc')?.hasError('required') && (superUpdateForm.get('sc')?.touched ||submitted)"
+                                             style="color: red;">
+                                            Session Commission must be greater than or equal to 0.
+                                        </div>
+                                        <div *ngIf="superUpdateForm.get('sc')?.hasError('max') && superUpdateForm.get('sc')?.touched"
+                                             style="color: red;">
+                                            Session Commission must be less than or equal to 3.
+                                        </div>
+                                        <div *ngIf="serverErrors?.sc" class="server-error" style="color: red;">
+                                            {{ serverErrors?.sc }}
+                                          </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: bold;" class="form-label">My Session
+                                            Commission</label>
+                                        <input type="text" [value]="super?.scMaster" class="form-control" disabled readonly value="3">
+  
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: bold;" class="form-label">Casino Commission</label>
+                                        <!-- <input type="text" class="form-control" formControlName="cc"
+                                               placeholder="Casino Commission"
+                                               autocomplete="off"> -->
+                                               <input type="number" class="form-control"
+                                               [ngClass]="superUpdateForm.get('cc')?.touched && superUpdateForm.get('cc')?.hasError('required') ? 'is-invalid' : ''"
+                                               formControlName="cc" autocomplete="off" placeholder="Casino Commission" required />
+  
+                                        <div *ngIf="superUpdateForm.get('cc')?.hasError('required') && (superUpdateForm.get('cc')?.touched ||submitted)"
+                                             style="color: red;">
+                                            Casino Commission must be greater than or equal to 0.
+                                        </div>
+                                        <div *ngIf="superUpdateForm.get('cc')?.hasError('max') && superUpdateForm.get('cc')?.touched" style="color: red;">
+                                            Casino Commission must be less than or equal to 2.
+                                        </div>
+                                        <div *ngIf="serverErrors?.cc" class="server-error" style="color: red;">
+                                            {{ serverErrors?.cc }}
+                                          </div>
+                                    </div>
+  
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: bold;" class="form-label">My Casino
+                                            Commission</label>
+                                        <input type="text" class="form-control" disabled autocomplete="off" readonly
+                                        [value]="super?.ccMaster" >
+  
+                                    </div>
+  
+                                </div>
+  </div>    
+  
+                    </div>
+                </div>
+  
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                <a routerLink="/super" class="btn btn-primary me-2">Cancel</a>
+                <button type="button" class="btn btn-primary me-2" (click)="onSubmit()">update Super</button>
+                
+                      <div class="spinner-border" role="status" *ngIf="isLoading==true">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                  <!-- </span> -->
+            </div>
+          </form>
+        </div>
+  
+  
+  </div>
+  
+  

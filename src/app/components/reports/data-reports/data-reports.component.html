@@ -1,0 +1,116 @@
+<div class="row">
+    <div class="col-md-12 stretch-card">
+      <div class="card">
+        <div class="card-header">
+          <div class="card shadow p-3 mb-3">
+            <div class="row">
+              <div class="col-md-3 col-sm-6 mb-3">
+                <label class="mr-2" *ngIf="currentMaster">Master</label>
+                <label class="mr-2" *ngIf="currentSuper">Super</label>
+                <label class="mr-2" *ngIf="currentAgent">Agent</label>
+                <label class="mr-2" *ngIf="currentClient">Client</label>
+                <div ngbDropdown class="input-group w-100">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Select or search..."
+                    [(ngModel)]="searchQuery"
+                    ngbDropdownToggle
+                    (focus)="onFocus()"
+                    (input)="onSearchChange(searchQuery)"
+                    aria-labelledby="searchDropdown"
+                  />
+                  <div ngbDropdownMenu aria-labelledby="searchDropdown" class="w-100 dropdown-scroll">
+                    <div *ngIf="filteredOptions.length > 0">
+                      <button class="dropdown-item" (click)="onSelectOption('All')">All</button>
+                      <button
+                        class="dropdown-item"
+                        *ngFor="let option of filteredOptions"
+                        (click)="onSelectOption(option)"
+                      >{{ option }}</button>
+                    </div>
+                    <div *ngIf="filteredOptions.length === 0 && searchQuery">
+                      <span class="dropdown-item text-muted">No results found</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6 mb-3">
+                <label class="mr-2">Collection</label>
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>CA1 Cash</option>
+                  <option value="1">CA757 Ayush Khant</option>
+                </select>
+              </div>
+              <div class="col-md-3 col-sm-6 mb-3">
+                <div class="form-group mb-0">
+                  <label class="mr-2">Date from</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="yyyy-mm-dd" aria-label="Recipient's username" ngbDatepicker #from="ngbDatepicker">
+                    <div class="input-group-append" (click)="from.toggle()">
+                      <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6 mb-3">
+                <div class="form-group mb-0">
+                  <label class="mr-2">Date To</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="yyyy-mm-dd" aria-label="Recipient's username" ngbDatepicker #to="ngbDatepicker">
+                    <div class="input-group-append" (click)="to.toggle()">
+                      <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 col-sm-12 text-center">
+                <button class="btn btn-success">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped table-sm">
+              <thead>
+                <tr>
+                  <th style="width: 50px;">#</th>
+                  <th>Date</th>
+                  <th>Collection Name</th>
+                  <th>Debit</th>
+                  <th>Credit</th>
+                  <th>Balance</th>
+                  <th>Payment Type</th>
+                  <th>Remark</th>
+                </tr>
+
+              </thead>
+              <tbody>
+                <tr *ngFor="let entry of paginatedData; let i = index">
+                  <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+                  <td>{{ entry.master }}</td>
+                  <td>{{ entry.type }}</td>
+                  <td>{{ entry.oldValue }}</td>
+                  <td>{{ entry.newValue }}</td>
+                  <td>{{ entry.user }}</td>
+                  <td>{{ entry.date }}</td>
+                  <td>{{ entry.ip }}</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+        <div class="d-flex justify-content-end">
+          <ngb-pagination
+            [collectionSize]="totalItems"
+            [(page)]="currentPage"
+            [pageSize]="itemsPerPage"
+            (pageChange)="onPageChange($event)">
+          </ngb-pagination>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,86 @@
+<div class="row" >
+    <div class="col-md-12 stretch-card">
+      <div class="card">
+          <div class="card-header">
+            <div class="header-container">
+              <div class="left-section">
+                <!-- Empty or additional content can go here -->
+              </div>
+              <div class="right-section">
+                <div class="search-container">
+                  <label for="searchInput" class="search-label">Search</label>
+                  <input
+                    type="text"
+                    class="search-input"
+                    id="searchInput" (input)="onSearch($event)"
+                    placeholder="Search..."
+                  />
+                </div>
+              </div>
+            </div>    
+          </div>
+        <div class="card-body">
+          <div class="table-responsive ">
+            <table class="table table-bordered table-striped table-hover .table-xs ">
+              <thead>
+              <tr>
+                <th style="text-align: center;">SNo</th>
+                <th (click)="sortData('subAdminName')">Sub Admin Name 
+                  <i [class]="sort.column === 'subAdminName' && sort.direction === 'asc' ? 'fa fa-arrow-up' : 'fa fa-arrow-down'"></i>
+                </th>
+                <th (click)="sortData('name')">Limit 
+                  <i [class]="sort.column === 'name' && sort.direction === 'asc' ? 'fa fa-arrow-up' : 'fa fa-arrow-down'"></i>
+                </th>
+                <th>Enter Limit</th>
+                <th (click)="sortData('password')">My Limit:{{totalLimit}}
+                  <i [class]="sort.column === 'password' && sort.direction == 'asc' ? ' fa fa-arrow-up' :'fa fa-arrow-down'"></i> 
+                </th>
+              </tr>
+              </thead>
+              <tbody>
+  
+                <tr *ngFor="let row of data; index as i">
+                    <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
+                    <td>{{ row.name }}</td>
+                    <td>{{ row.balance }}</td>
+                    <td>
+                      <input type="number" class="form-control digits m-input" #limitInput>
+                    </td>
+                    <td>
+                      <button class="btn btn-sm btn-primary" style="margin-right: 4px;" (click)="adds( limitInput.value,row.id)">Add</button>
+                      <button class="btn btn-danger" (click)="minus( limitInput.value,row.id)">Minus</button>
+                    </td>
+                  </tr>
+              </tbody>
+              <tfoot>
+              <tr>
+                <th></th>
+                <!-- <th></th> -->
+                <!-- <th></th> -->
+                <th></th>
+                <!-- <th></th> -->
+                <th></th>
+                <!-- <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th> -->
+                <!-- <th></th>
+                <th></th> -->
+              </tr>
+              </tfoot>
+            </table>
+          </div>
+  
+        </div>
+        <div class="card-footer">
+          <div class="right">
+            <ngb-pagination [collectionSize]="totalCount" [pageSize]="pageSize" [(page)]="currentPage"  [maxSize]="2"  [rotate]="true" (pageChange)="onPageChange($event)"></ngb-pagination>
+            <div class="page-info" >Page {{ currentPage }} of {{ totalCount / pageSize }} Pages ({{ totalCount }} items)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <app-toasts [toasts]="toastService.toasts"></app-toasts> -->
+  

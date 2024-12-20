@@ -1,0 +1,51 @@
+button{
+    font-family: 'Roboto',sans-serif;
+}
+.right{
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+  }
+.search{
+    display: flex;
+    justify-content: space-between;
+}
+.header-container {
+    display: flex;
+    justify-content: space-between; /* Align left and right sections */
+    align-items: center;
+  }
+  
+  .left-section {
+    flex: 1; /* Use this section for any left-side content if needed */
+  }
+  
+  .right-section {
+    display: flex;
+    justify-content: flex-end; /* Aligns the search field to the right */
+    align-items: center;
+  }
+  
+  .search-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between label and input */
+  }
+  
+  .search-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+  
+  .search-input {
+    width: 200px;
+    height: 32px;
+    padding: 4px 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
+  .card-header{
+    padding: 15px !important;
+  }

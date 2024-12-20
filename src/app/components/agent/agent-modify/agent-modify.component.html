@@ -1,0 +1,378 @@
+<div class="container-fluid" style="margin: auto;">
+   
+  
+    <div class="card card-primary">
+        <!-- <h5>Modify Agent</h5>  -->
+     
+    <form class="forms-sample" [formGroup]="agentUpdateForm" >
+           
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 grid-margin" >
+                            <div class="card-header bg-primary btn-air-dark">
+                                <h5>Basic Info</h5>
+                        </div>
+  
+                            <div class="card-body card" style="margin-right:1px solid black ;  ">
+                                <div class="mb-3">
+                                    <label class="form-label" style="font-weight: bold;">Code</label>
+                                    <input type="text"  class="form-control" autocomplete="off" [value]="code"
+                                     readonly="true" placeholder="Auto Generated" style="background-color:#e9ecef;">
+                                </div>
+  
+                                <div class="mb-3">
+                                  <label style="font-weight: bold;" class="form-label">Name *</label>
+                                  <input type="text" class="form-control"
+                                         [ngClass]="agentUpdateForm.get('name')?.touched && agentUpdateForm.get('name')?.hasError('required') ? 'is-invalid' : ''"
+                                         formControlName="name" autocomplete="off"
+                                         placeholder="Name" required />
+  
+                                  <div *ngIf="agentUpdateForm.get('name')?.hasError('required') && (agentUpdateForm.get('name')?.touched || submitted)"
+                                       style="color:red">
+                                      Name is required.
+                                  </div>
+                                  <div
+                                          *ngIf="agentUpdateForm.get('name')?.hasError('minlength') && agentUpdateForm.get('name')?.touched"
+                                          style="color:red">
+                                      Name must be at least 3 characters.
+                                  </div>
+                                  <div
+                                          *ngIf="agentUpdateForm.get('name')?.hasError('maxlength') && agentUpdateForm.get('name')?.touched"
+                                          style="color:red">
+                                      Name cannot exceed 30 characters.
+                                  </div>
+                                  <div *ngIf="agentUpdateForm.get('name')?.hasError('pattern') && agentUpdateForm.get('name')?.touched"
+                                       style="color:red">
+                                      Invalid pattern for Name.
+                                  </div>
+                              </div>
+  
+                                <div class="mb-3">
+                                    <label style="font-weight: bold;" class="form-label">Reference*</label>
+                                    <input type="text" class="form-control"
+                                    [ngClass]="agentUpdateForm.get('reference')?.touched && agentUpdateForm.get('reference')?.hasError('required') ? 'is-invalid' : ''"
+                                    formControlName="reference" autocomplete="off" placeholder="Reference" required />
+  
+                             <div *ngIf="agentUpdateForm.get('reference')?.hasError('required') && (agentUpdateForm.get('reference')?.touched || submitted)"
+                                  style="color: red">
+                               Reference is required.
+                             </div>
+  
+                             <div
+                             *ngIf="agentUpdateForm.get('reference')?.hasError('minlength') && agentUpdateForm.get('reference')?.touched"
+                             style="color:red">
+                             Reference must be at least 3 characters.
+                     </div>
+                                    <div
+                                            *ngIf="agentUpdateForm.get('reference')?.hasError('pattern') && agentUpdateForm.get('reference')?.touched"
+                                            style="color:red">
+                                        Invalid pattern for Reference.
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label style="font-weight: bold;" class="form-label">Password *</label>
+                                    <div class="input-group mb-3">
+                                      <input type="text" class="form-control"
+                                      [ngClass]="agentUpdateForm.get('reference')?.touched && agentUpdateForm.get('password')?.hasError('required') ? 'is-invalid' : ''"
+                                      formControlName="password" autocomplete="off" placeholder="Password" required readonly/>
+                                        <button class="input-group-text btn-primary" id="basic-addon2"
+                                                type="button" (click)="generatePassword()"
+                                                style="background-color:#17a2b8 ;color: whitesmoke;">Generate Password
+                                        </button>
+                                    </div>
+                                    
+                                    <!-- <div
+                                            *ngIf="agentUpdateForm.get('password')?.hasError('required') && agentUpdateForm.get('password')?.touched && submitted"
+                                            style="color:red">
+                                        Password is required.
+                                    </div> -->
+                                    <div *ngIf="agentUpdateForm.get('password')?.hasError('required') && (agentUpdateForm.get('password')?.touched || submitted)"
+                                    style="color: red">
+                                    Password is required.
+                               </div>
+                                    <!-- <div
+                                            *ngIf="agentUpdateForm.get('password')?.hasError('minlength') && agentUpdateForm.get('password')?.touched && submitted"
+                                            style="color: red;">
+                                        Password must be at least 6 characters.
+                                    </div> -->
+                                    <div
+                                    *ngIf="agentUpdateForm.get('password')?.hasError('minlength') && agentUpdateForm.get('password')?.touched"
+                                    style="color:red">
+                                    Password must be at least 6 characters..
+                            </div>
+  
+                                    <div
+                                    *ngIf="agentUpdateForm.get('password')?.hasError('maxlength') && agentUpdateForm.get('password')?.touched"
+                                    style="color:red">
+                                    Password cannot exceed 60 characters.
+                            </div>
+  
+                                </div>
+                                <div class="mb-3">
+                                    <label style="font-weight: bold;" class="form-label">Contact No</label>
+                                    <input type="text" class="form-control"
+                                    [ngClass]="agentUpdateForm.get('contactNo')?.touched && agentUpdateForm.get('contactNo')?.hasError('required') ? 'is-invalid' : ''"
+                                    formControlName="contactNo" autocomplete="off" placeholder="contactNo" required />
+  
+                                    <!-- <input type="text" class="form-control" formControlName="contactNo"
+                                           autocomplete="off"
+                                           placeholder="Contact No"> -->
+  
+                                    <div *ngIf="agentUpdateForm.get('contactNo')?.hasError('required') && (agentUpdateForm.get('password')?.touched || submitted)"
+                                    style="color: red">
+                                    Contact number is required.
+                               </div>
+                               <div
+                               *ngIf="agentUpdateForm.get('contactNo')?.hasError('maxlength') && agentUpdateForm.get('contactNo')?.touched"
+                               style="color:red">
+                               Contact number cannot exceed 11 digits.
+                       </div>
+  
+                                    <div
+                                            *ngIf="agentUpdateForm.get('contactNo')?.hasError('pattern') && agentUpdateForm.get('contactNo')?.touched"
+                                            style="color: red;">
+                                        Only numbers are allowed for the contact number.
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                  <label style="font-weight: bold;" class="form-label">Casino Play</label>
+                                  <select class="form-select " aria-label="Default select example"  formControlName="casinoCheck" style="width: 100%;">
+                                    <option [value]="true">Yes</option>
+                                    <option [value]="false">No</option>
+                                  </select>
+                                </div>
+                                <!-- <div class="mb-3">
+                                  <label style="font-weight: bold;" class="form-label">International Casino Check</label>
+                                  <select class="form-select" aria-label="Default select example"  formControlName="icCheck" style="width: 100%;">
+                                    <option [value]="true">Yes</option>
+                                    <option [value]="false">No</option>
+                                  </select>
+                                </div> -->
+  
+                            </div>
+                        </div>
+  
+                    <div class="col-md-6 grid-margin stretch-card">
+                            <div class="card-header bg-danger btn-air-dark">
+                                <h5>Share and Commission</h5>
+                        </div>
+                               
+                            <div class="card-body card" style="margin-right:1px solid black ;">
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label style="font-weight: bold;" class="form-label">Share</label>
+                                            
+                                                   <input type="number" class="form-control"
+                                                   [ngClass]="agentUpdateForm.get('share')?.touched  && agentUpdateForm.get('share')?.hasError('required') ? 'is-invalid' : ''"
+                                                   formControlName="share" autocomplete="off" placeholder="Share " required />
+  
+                                            <div
+                                                    *ngIf="agentUpdateForm.get('share')?.hasError('required') && (agentUpdateForm.get('share')?.touched||submitted)"
+                                                    style="color:red">
+                                                Share must be greater than or equal to 0.
+                                            </div>
+                                            <div
+                                                    *ngIf="agentUpdateForm.get('share')?.hasError('min') && agentUpdateForm.get('share')?.touched"
+                                                    style="color:red">
+                                                Share must be greater than or equal to 0.
+                                            </div>
+                                            <div
+                                                    *ngIf="agentUpdateForm.get('share')?.hasError('max') && agentUpdateForm.get('share')?.touched"
+                                                    style="color:red">
+                                                Share must be less than or equal to {{agent?.share}}.
+                                            </div>
+  
+  
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: bold;" class="form-label">My Share</label>
+                                        <input type="number" class="form-control" disabled autocomplete="off"
+                                        [value]="agent?.share" placeholder="0.0">
+  
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label style="font-weight: bold;" class="form-label">Casino Share</label>
+  
+                                                   <input type="number" class="form-control"
+                                                   [ngClass]="agentUpdateForm.get('casinoShare')?.touched && agentUpdateForm.get('casinoShare')?.hasError('required') ? 'is-invalid' : ''"
+                                                   formControlName="casinoShare" autocomplete="off" placeholder="Casino Share " required />
+                                            <div
+                                                    *ngIf="agentUpdateForm.get('casinoShare')?.hasError('required') && (agentUpdateForm.get('casinoShare')?.touched ||submitted)"
+                                                    style="color:red">
+                                                Casino share must be greater than or equal to 0.
+                                            </div>
+                                            <div
+                                                    *ngIf="agentUpdateForm.get('casinoShare')?.hasError('max') && agentUpdateForm.get('casinoShare')?.touched"
+                                                    style="color:red">
+                                                Casino share must be less than or equal to 100.
+                                            </div>
+  
+                                            <div *ngIf="agentUpdateForm.get('casinoShare')?.hasError('serverError')" class="invalid-feedback">
+                                              {{ agentUpdateForm.get('casinoShare')?.getError('serverError') }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: bold;" class="form-label"> My Casino Share</label>
+                                        <input type="number" class="form-control" disabled autocomplete="off"
+                                        [value]="agent?.casinoShare" placeholder="0.0">
+                                    </div>
+                                </div>
+                                
+                                <!-- <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label style="font-weight: bold;" class="form-label">International Casino
+                                                Share</label>
+                                            
+                                                   <input type="number" class="form-control"
+                                                   [ngClass]="agentUpdateForm.get('icShare')?.touched && agentUpdateForm.get('icShare')?.hasError('required') ? 'is-invalid' : ''"
+                                                   formControlName="icShare" autocomplete="off" placeholder="International Casino Share " required />
+  
+                                            <div
+                                                    *ngIf="agentUpdateForm.get('icShare')?.hasError('required') && (agentUpdateForm.get('icShare')?.touched || submitted) "
+                                                    style="color:red">
+                                                Casino share must be greater than or equal to 0.
+                                            </div>
+                                            <div
+                                                    *ngIf="agentUpdateForm.get('icShare')?.hasError('max') && agentUpdateForm.get('icShare')?.touched"
+                                                    style="color:red">
+                                                Casino share must be less than or equal to 100.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: bold;" class="form-label"> My International Casino
+                                            Share</label>
+                                        <input type="number" class="form-control" disabled autocomplete="off"
+                                        [value]="serverErrors?.icShare" placeholder="0.0">
+  
+                                    </div>
+                                </div> -->
+                                <!-- <div class="row mb-3">
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: bold;" class="form-label">Mobile Share</label>
+                                        
+                                               <input type="number" class="form-control"
+                                                   [ngClass]="agentUpdateForm.get('mobileShare')?.touched && agentUpdateForm.get('mobileShare')?.hasError('required') ? 'is-invalid' : ''"
+                                                   formControlName="mobileShare" autocomplete="off" placeholder="International Casino Share " required />
+                                        <div
+                                                *ngIf="agentUpdateForm.get('mobileShare')?.hasError('required') && (agentUpdateForm.get('mobileShare')?.touched||submitted)"
+                                                style="color: red;">
+                                            Mobile share must be greater than or equal to 0.
+                                        </div>
+                                        <div
+                                                *ngIf="agentUpdateForm.get('mobileShare')?.hasError('max') && agentUpdateForm.get('mobileShare')?.touched"
+                                                style="color: red;">
+                                            Mobile share must be less than or equal to 100.
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: bold;" class="form-label">My Mobile Share</label>
+                                        <input type="text" class="form-control" disabled autocomplete="off"
+                                        [value]="agent?.mobileShare" placeholder="0.0">
+  
+                                    </div>
+                                </div> -->
+                                <div class="row mb-3">
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: bold;" class="form-label">Match Commission</label>
+                                        <!-- <input type="text" class="form-control" formControlName="mc" autocomplete="off"
+                                               placeholder="Mathc Commission"> -->
+                                               <input type="number" class="form-control"
+                                               [ngClass]="agentUpdateForm.get('mc')?.touched && agentUpdateForm.get('mc')?.hasError('required') ? 'is-invalid' : ''"
+                                               formControlName="mc" autocomplete="off" placeholder="Match Commission" required />
+  
+                                        <div *ngIf="agentUpdateForm.get('mc')?.hasError('required') && (agentUpdateForm.get('mc')?.touched|| submitted)"
+                                             style="color: red;">
+                                            Match Commission must be greater than or equal to 0.
+                                        </div>
+                                        <div *ngIf="agentUpdateForm.get('mc')?.hasError('max') && agentUpdateForm.get('mc')?.touched"
+                                             style="color: red;">
+                                            Match Commission must be less than or equal to 2.
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: bold;" class="form-label">My Match Commission</label>
+                                        <input type="text" class="form-control" disabled autocomplete="off" [value]="agent?.mcSuper"
+                                               placeholder="2.0">
+  
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: bold;" class="form-label">Session Commission</label>
+                                        <!-- <input type="text" class="form-control" formControlName="sc" autocomplete="off"
+                                               placeholder="Session Commission"> -->
+                                               <input type="number" class="form-control"
+                                               [ngClass]="agentUpdateForm.get('sc')?.touched && agentUpdateForm.get('sc')?.hasError('required') ? 'is-invalid' : ''"
+                                               formControlName="sc" autocomplete="off" placeholder="Session Commission" required />
+  
+                                        <div *ngIf="agentUpdateForm.get('sc')?.hasError('required') && (agentUpdateForm.get('sc')?.touched ||submitted)"
+                                             style="color: red;">
+                                            Session Commission must be greater than or equal to 0.
+                                        </div>
+                                        <div *ngIf="agentUpdateForm.get('sc')?.hasError('max') && agentUpdateForm.get('sc')?.touched"
+                                             style="color: red;">
+                                            Session Commission must be less than or equal to 3.
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: bold;" class="form-label">My Session
+                                            Commission</label>
+                                        <input type="text" [value]="agent?.scSuper" class="form-control" disabled readonly [value]="agent?.sc">
+  
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: bold;" class="form-label">Casino Commission</label>
+                                        <!-- <input type="text" class="form-control" formControlName="cc"
+                                               placeholder="Casino Commission"
+                                               autocomplete="off"> -->
+                                               <input type="number" class="form-control"
+                                               [ngClass]="agentUpdateForm.get('cc')?.touched && agentUpdateForm.get('cc')?.hasError('required') ? 'is-invalid' : ''"
+                                               formControlName="cc" autocomplete="off" placeholder="Casino Commission" required />
+  
+                                        <div *ngIf="agentUpdateForm.get('cc')?.hasError('required') && (agentUpdateForm.get('cc')?.touched ||submitted)"
+                                             style="color: red;">
+                                            Casino Commission must be greater than or equal to 0.
+                                        </div>
+                                        <div *ngIf="agentUpdateForm.get('cc')?.hasError('max') && agentUpdateForm.get('cc')?.touched" style="color: red;">
+                                            Casino Commission must be less than or equal to 2.
+                                        </div>
+                                    </div>
+  
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: bold;" class="form-label">My Casino
+                                            Commission</label>
+                                        <input type="text" class="form-control" disabled autocomplete="off" readonly
+                                        [value]="agent?.ccSuper" >
+  
+                                    </div>
+  
+                                </div>
+  </div>
+  
+                    </div>
+                </div>
+  
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                <a routerLink="/agent" class="btn btn-primary me-2">Cancel</a>
+                <button type="button" class="btn btn-primary me-2" (click)="onSubmit()">update Agent</button>
+                
+                      <div class="spinner-border" role="status" *ngIf="isLoading==true">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                  <!-- </span> -->
+            </div>
+          </form>
+        </div>
+  </div>

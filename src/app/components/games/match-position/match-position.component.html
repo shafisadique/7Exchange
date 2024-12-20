@@ -1,0 +1,145 @@
+<div class="row" >
+    <div class="container" style="margin: auto;" >
+      <div class="col-md-12 col-sm-12 stretch-card" >
+        <div class="card">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="card shadow p-3 mb-3" style="margin: 5px;">
+                        <table class="table table-bordered" >
+                          <thead>
+                            <tr>
+                              <th>Team</th>
+                              <th style="color: red !important;">KHAI</th>
+                              <th style="color: blue !important;">LAGAI</th>
+                              <th><span style="color: blue !important;">P/</span><span style="color: red !important;">M</span></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let team of teamDetails">
+                                <td>{{ team.team }}</td>
+                                <td style="color: red !important;">{{ team.khai }}</td>
+                                <td style="color: blue !important;">{{ team.lagai }}</td>
+                                <td>{{ team.plusMinus }}</td>
+                              </tr>
+                          </tbody>
+                        </table>
+                    </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                    <div class="card shadow" style="margin: 5px;">
+
+                        <table class="table table-bordered " >
+                          <thead>
+                            <tr>
+                              <th>Session</th>
+                              <th style="color: red !important;">NOT</th>
+                              <th style="color: blue !important;">YES</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let session of sessionDetails">
+                                <td>{{ session.session }}</td>
+                                <td>{{ session.not }}</td>
+                                <td>{{ session.yes }}</td>
+                              </tr>
+                          </tbody>
+                        </table>
+                        </div>
+                        </div>   
+
+            </div>
+            
+  
+  
+          <!-- </div> -->
+          <div class="card-body">
+            <div class="row">
+                <div class="col-md-9 col-sm-12">
+                    <div class="table-responsive">
+        
+                <table class="table table-bordered table-hover ">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Rate</th>
+                      <th>Amount</th>
+                      <th>Mode</th>
+                      <th>Team</th>
+                      <th>Client</th>
+                      <th>Team 1</th>
+                      <th>Team 2</th>
+                      <th>Date & Time</th>
+                      </tr>
+                    </thead>
+                  <tbody>
+                      <tr *ngFor="let bet of betDetails">
+                          <td>{{ bet.id }}</td>
+                          <td>{{ bet.rate }}</td>
+                          <td>{{ bet.amount }}</td>
+                          <td>{{ bet.mode }}</td>
+                          <td></td>
+                          <td> {{ bet.team1 }}</td>
+                          <td>{{ bet.team2 }}</td>
+                          <td>{{ bet.client }}</td>
+                          <td>{{ bet.dateTime }}</td>
+                        </tr>
+               
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>              <th></th>
+                    <th></th>              <th></th>
+                    <th></th>
+                    <th></th>
+      
+                  </tr>
+                  </tfoot>
+                </table>
+                   </div>
+                </div>
+
+             <div class="col-md-3">
+                <div class="card ">
+                    <table class="table table-bordered" >
+                      <thead>
+                        <tr>
+                          <th>Runs</th>
+                          <th>Amount</th>
+          
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>2</td>
+                          </tr>
+                          <tr>
+                            <td>1</td>
+                            <td>2</td>
+                          </tr>
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+  
+  
+            </div>
+  
+          </div>
+          <div class="card-footer">
+            <div class="right">
+  
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+      </div>
+  

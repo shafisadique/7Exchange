@@ -1,0 +1,235 @@
+<div class="container" style="margin: auto;">
+    <div class="card card-primary">
+        <form class="forms-sample" *ngIf="masterUpdateForm"  [formGroup]="masterUpdateForm" >
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 grid-margin" >
+                        <div class="card-header bg-primary btn-air-dark"><h5>Basic Info</h5></div>
+                        <div class="card-body card" style="margin-right:1px solid black ; ">
+                            <div class="mb-3">
+                                <label class="form-label" style="font-weight: bold;">Code</label>
+                                <input type="text"  class="form-control" autocomplete="off" readonly="true" placeholder="Auto Generated" style="background-color:#e9ecef;" [value]="code">
+                            </div>
+  
+                                <div class="mb-3">
+                                    <label style="font-weight: bold;" class="form-label">Name *</label>
+                                    <input type="text" class="form-control" [ngClass]="masterUpdateForm.get('name')?.touched && masterUpdateForm.get('name')?.hasError('required') ? 'is-invalid' : ''" formControlName="name" autocomplete="off" placeholder="Name" required />
+                                    <div *ngIf="masterUpdateForm.get('name')?.hasError('required') && (masterUpdateForm.get('name')?.touched || submitted)" style="color:red"> Name is required.</div>
+                                    <div *ngIf="masterUpdateForm.get('name')?.hasError('minlength') && masterUpdateForm.get('name')?.touched" style="color:red">Name must be at least 3 characters.</div>
+                                    <div *ngIf="masterUpdateForm.get('name')?.hasError('maxlength') && masterUpdateForm.get('name')?.touched" style="color:red">Name cannot exceed 30 characters.</div>
+                                    <div *ngIf="masterUpdateForm.get('name')?.hasError('pattern') && masterUpdateForm.get('name')?.touched" style="color:red"> Invalid pattern for Name.</div>
+                                </div>
+  
+                                <div class="mb-3">
+                                    <label style="font-weight: bold;" class="form-label">Reference*</label>
+                                    <input type="text" class="form-control" [ngClass]="masterUpdateForm.get('reference')?.touched && masterUpdateForm.get('reference')?.hasError('required') ? 'is-invalid' : ''" formControlName="reference" autocomplete="off" placeholder="Reference" required />
+                                    <div *ngIf="masterUpdateForm.get('reference')?.hasError('required') && (masterUpdateForm.get('reference')?.touched || submitted)" style="color: red">Reference is required.</div>
+                                    <div *ngIf="masterUpdateForm.get('reference')?.hasError('minlength') && masterUpdateForm.get('reference')?.touched" style="color:red">Reference must be at least 3 characters.</div>
+                                    <div *ngIf="masterUpdateForm.get('reference')?.hasError('pattern') && masterUpdateForm.get('reference')?.touched" style="color:red">Invalid pattern for Reference.</div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label style="font-weight: bold;" class="form-label">Password *</label>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" [ngClass]="masterUpdateForm.get('reference')?.touched && masterUpdateForm.get('password')?.hasError('required') ? 'is-invalid' : ''" formControlName="password" autocomplete="off" placeholder="Password" required readonly/>
+                                        <button class="input-group-text btn-primary" id="basic-addon2" type="button" (click)="generatePassword()" style="background-color:#17a2b8 ;color: whitesmoke;">Generate Password</button>
+                                    </div>
+                                    <div *ngIf="masterUpdateForm.get('password')?.hasError('required') && (masterUpdateForm.get('password')?.touched || submitted)" style="color: red"> Password is required.</div>                                    
+                                    <div *ngIf="masterUpdateForm.get('password')?.hasError('minlength') && masterUpdateForm.get('password')?.touched" style="color:red">Password must be at least 6 characters.</div>
+                                    <div *ngIf="masterUpdateForm.get('password')?.hasError('maxlength') && masterUpdateForm.get('password')?.touched" style="color:red"> Password cannot exceed 60 characters.</div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label style="font-weight: bold;" class="form-label">Contact No</label>
+                                    <input type="text" class="form-control" [ngClass]="masterUpdateForm.get('contactNo')?.touched && masterUpdateForm.get('contactNo')?.hasError('required') ? 'is-invalid' : ''" formControlName="contactNo" autocomplete="off" placeholder="contactNo" required />
+                                    <div *ngIf="masterUpdateForm.get('contactNo')?.hasError('required') && (masterUpdateForm.get('password')?.touched || submitted)" style="color: red">Contact number is required.</div>
+                                    <div *ngIf="masterUpdateForm.get('contactNo')?.hasError('maxlength') && masterUpdateForm.get('contactNo')?.touched" style="color:red">Contact number cannot exceed 11 digits.</div>
+                                    <div *ngIf="masterUpdateForm.get('contactNo')?.hasError('pattern') && masterUpdateForm.get('contactNo')?.touched" style="color: red;">Only numbers are allowed for the contact number.</div>
+                                </div>
+
+                                <div class="mb-3">
+                                  <label style="font-weight: bold;" class="form-label">Casino Play</label>
+                                  <select class="form-select " aria-label="Default select example"  formControlName="casinoCheck" style="width: 100%;">
+                                    <option [value]="true">Yes</option>
+                                    <option [value]="false">No</option>
+                                  </select>
+                                </div>
+
+                                <!-- <div class="mb-3">
+                                  <label style="font-weight: bold;" class="form-label">International Casino Check</label>
+                                  <select class="form-select" aria-label="Default select example"  formControlName="icCheck" style="width: 100%;">
+                                    <option [value]="true">Yes</option>
+                                    <option [value]="false">No</option>
+                                  </select>
+                                </div> -->
+                        </div>
+                    </div>
+  
+                    <div class="col-md-6 grid-margin stretch-card">
+                            <div class="card-header bg-danger btn-air-dark"><h5>Share and Commission</h5></div>
+                            <div class="card-body card" style="margin-right:1px solid black ;">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="mb-3">
+                                            <label style="font-weight: bold;" class="form-label">Share</label>
+                                            <input type="number" class="form-control" [ngClass]="masterUpdateForm.get('share')?.touched  && masterUpdateForm.get('share')?.hasError('required') ? 'is-invalid' : ''" formControlName="share" autocomplete="off" placeholder="Share " required />
+                                            <div *ngIf="masterUpdateForm.get('share')?.hasError('required') && (masterUpdateForm.get('share')?.touched||submitted)" style="color:red"> Share must be greater than or equal to 0.</div>
+                                            <div *ngIf="masterUpdateForm.get('share')?.hasError('min') && masterUpdateForm.get('share')?.touched" style="color:red">Share must be greater than or equal to 0.</div>
+                                            <div *ngIf="masterUpdateForm.get('share')?.hasError('max') && masterUpdateForm.get('share')?.touched" style="color:red">Share must be less than or equal to {{masterData?.share}}.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label style="font-weight: bold;" class="form-label">My Share On Master</label>
+                                        <input type="number" class="form-control" disabled autocomplete="off" [value]="subAdminData?.share" placeholder="0.0">  
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label style="font-weight: bold;" class="form-label">My Share</label>
+                                        <input type="number" class="form-control" disabled autocomplete="off" [value]="subAdminData?.share" placeholder="0.0">  
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="mb-3">
+                                            <label class="form-label" style="font-size: 12px !important; font-weight: 100;">Casino Share</label>
+                                            <input type="number" class="form-control" [ngClass]="masterUpdateForm.get('casinoShare')?.touched && masterUpdateForm.get('casinoShare')?.hasError('required') ? 'is-invalid' : ''" formControlName="casinoShare" autocomplete="off" placeholder="Casino Share " required />
+                                            <div *ngIf="masterUpdateForm.get('casinoShare')?.hasError('required') && (masterUpdateForm.get('casinoShare')?.touched ||submitted)" style="color:red">Casino share must be greater than or equal to 0.</div>
+                                            <div *ngIf="masterUpdateForm.get('casinoShare')?.hasError('max') && masterUpdateForm.get('casinoShare')?.touched" style="color:red">Casino share must be less than or equal to 100.</div>
+                                            <div *ngIf="masterUpdateForm.get('casinoShare')?.hasError('serverError')" class="invalid-feedback">{{ masterUpdateForm.get('casinoShare')?.getError('serverError') }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label class="form-label" style="font-size: 12px !important;"> My Casino Share  On Master</label>
+                                        <input type="number" class="form-control" disabled autocomplete="off" [value]="subAdminData?.casinoShare" placeholder="0.0">
+                                     </div>
+
+                                     <div class="col-sm-4">
+                                        <label class="form-label" style="font-size: 12px !important;"> My Casino Share</label>
+                                        <input type="number" class="form-control" disabled autocomplete="off" [value]="subAdminData?.casinoShare" placeholder="0.0">
+                                     </div>
+                                    </div>
+
+                                <div class="row">
+                              
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: bold;" class="form-label">Mobile Share</label>
+                                               <input type="number" class="form-control"
+                                                   [ngClass]="masterUpdateForm.get('mobileShare')?.touched && masterUpdateForm.get('mobileShare')?.hasError('required') ? 'is-invalid' : ''"
+                                                   formControlName="mobileShare" autocomplete="off" placeholder="International Casino Share " required />
+                                        <div
+                                                *ngIf="masterUpdateForm.get('mobileShare')?.hasError('required') && (masterUpdateForm.get('mobileShare')?.touched||submitted)"
+                                                style="color: red;">
+                                            Mobile share must be greater than or equal to 0.
+                                        </div>
+                                        <div
+                                                *ngIf="masterUpdateForm.get('mobileShare')?.hasError('max') && masterUpdateForm.get('mobileShare')?.touched"
+                                                style="color: red;">
+                                            Mobile share must be less than or equal to 100.
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: bold;" class="form-label">My Mobile Share</label>
+                                        <input type="text" class="form-control" disabled autocomplete="off"
+                                        [value]="serverErrors?.mobileShare" placeholder="0.0">
+  
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: bold;" class="form-label">Match Commission</label>
+                                      
+                                               <input type="number" class="form-control"
+                                               [ngClass]="masterUpdateForm.get('mc')?.touched && masterUpdateForm.get('mc')?.hasError('required') ? 'is-invalid' : ''"
+                                               formControlName="mc" autocomplete="off" placeholder="Match Commission" required />
+  
+                                        <div *ngIf="masterUpdateForm.get('mc')?.hasError('required') && (masterUpdateForm.get('mc')?.touched|| submitted)"
+                                             style="color: red;">
+                                            Match Commission must be greater than or equal to 0.
+                                        </div>
+                                        <div *ngIf="masterUpdateForm.get('mc')?.hasError('max') && masterUpdateForm.get('mc')?.touched"
+                                             style="color: red;">
+                                            Match Commission must be less than or equal to 2.
+                                        </div>
+                                        <div *ngIf="serverErrors?.mc && serverErrors != null" class="server-error" style="color: red;">
+                                            {{ serverErrors?.mc }}
+                                          </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: bold;" class="form-label">My Match Commission</label>
+                                        <input type="text" class="form-control" disabled autocomplete="off" [value]="subAdminData?.mc"
+                                               placeholder="2.0">
+  
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: bold;" class="form-label">Session Commission</label>
+                                        <!-- <input type="text" class="form-control" formControlName="sc" autocomplete="off"
+                                               placeholder="Session Commission"> -->
+                                               <input type="number" class="form-control"
+                                               [ngClass]="masterUpdateForm.get('sc')?.touched && masterUpdateForm.get('sc')?.hasError('required') ? 'is-invalid' : ''"
+                                               formControlName="sc" autocomplete="off" placeholder="Session Commission" required />
+  
+                                        <div *ngIf="masterUpdateForm.get('sc')?.hasError('required') && (masterUpdateForm.get('sc')?.touched ||submitted)"
+                                             style="color: red;">
+                                            Session Commission must be greater than or equal to 0.
+                                        </div>
+                                        <div *ngIf="masterUpdateForm.get('sc')?.hasError('max') && masterUpdateForm.get('sc')?.touched"
+                                             style="color: red;">
+                                            Session Commission must be less than or equal to 3.
+                                        </div>
+                                        <div *ngIf="serverErrors?.sc && serverErrors != null" class="server-error" style="color: red;">
+                                            {{ serverErrors?.sc }}
+                                          </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: bold;" class="form-label">My Session
+                                            Commission</label>
+                                        <input type="text" [value]="subAdminData?.sc" class="form-control" disabled readonly value="3">
+  
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: bold;" class="form-label">Casino Commission</label>
+                                        <!-- <input type="text" class="form-control" formControlName="cc"
+                                               placeholder="Casino Commission"
+                                               autocomplete="off"> -->
+                                               <input type="number" class="form-control"
+                                               [ngClass]="masterUpdateForm.get('cc')?.touched && masterUpdateForm.get('cc')?.hasError('required') ? 'is-invalid' : ''"
+                                               formControlName="cc" autocomplete="off" placeholder="Casino Commission" required />
+  
+                                        <div *ngIf="masterUpdateForm.get('cc')?.hasError('required') && (masterUpdateForm.get('cc')?.touched ||submitted)"
+                                             style="color: red;">
+                                            Casino Commission must be greater than or equal to 0.
+                                        </div>
+                                        <div *ngIf="masterUpdateForm.get('cc')?.hasError('max') && masterUpdateForm.get('cc')?.touched" style="color: red;">
+                                            Casino Commission must be less than or equal to 2.
+                                        </div>
+                                        <div *ngIf="serverErrors?.cc && serverErrors != null" class="server-error" style="color: red;">
+                                            {{ serverErrors?.cc }}
+                                          </div>
+                                    </div>
+  
+                                    <div class="col-sm-6">
+                                        <label style="font-weight: bold;" class="form-label">My Casino
+                                            Commission</label>
+                                        <input type="text" class="form-control" disabled autocomplete="off" readonly
+                                        [value]="subAdminData?.cc" >
+                                    </div>
+                                </div>
+  </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                <a routerLink="/master/master-details" class="btn btn-primary me-2">Cancel</a>
+                <button type="button" class="btn btn-primary me-2" (click)="onSubmit()">update Master</button>
+                
+                      <div class="spinner-border" role="status" *ngIf="isLoading==true">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+            </div>
+          </form>
+        </div>
+  </div>

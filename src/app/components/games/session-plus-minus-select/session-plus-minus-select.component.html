@@ -1,0 +1,47 @@
+<div class="row" >
+
+    <div class="container" style="margin: auto;" >
+      <div class="col-md-12 col-sm-12 stretch-card">
+        <div class="card">
+            <div class="row">
+                <div class="card-header col-md-10 col-sm-11">
+                <h3 *ngIf="currentRole == 'ADMIN'">SUB AGENT OF : BENGALURU BLASTERS V MYSORE WARRIORS</h3> 
+                <h3 *ngIf="currentRole == 'SUB'">MASTER AGENT OF : BENGALURU BLASTERS V MYSORE WARRIORS</h3>  
+                <h4 *ngIf="currentRole == 'Master'">SUPER AGENT OF : BENGALURU BLASTERS V MYSORE WARRIORS</h4>                  
+            </div>
+            <div class="col-2" style="margin-top: 10px;">
+                <button type="button" class="btn btn-primary">Show</button>
+            </div>
+            </div>
+            <div class="row">
+                <div class="table col-md-7 col-sm-8 ">
+                    <table class="table table-bordered table-hover table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox"/></th>
+                                <th>Session (Post Data)</th>
+                                <th>Declare</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="table col-md-5 col-sm-4 ">
+                    <table class="table table-bordered table-hover table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox"></th>
+                                <th>
+                                    <span *ngIf="currentRole == 'ADMIN'"> SUB AGENT </span>
+                                    <span *ngIf="currentRole == 'SUB'"> MASTER Agent </span>
+                                    <span *ngIf="currentRole == 'MASTER'"> SUPER Agent </span>
+    
+                                    
+                                (CODE NAME)</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+     </div>
+    </div>
+</div>

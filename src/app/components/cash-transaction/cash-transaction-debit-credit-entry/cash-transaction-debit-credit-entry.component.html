@@ -1,0 +1,141 @@
+<div class="row">
+    <div class="col-md-12 stretch-card">
+      <div class="card">
+          <div class="card shadow p-3" style="margin: 10px;">
+            <div class="row">
+              <div class="col-md-4 col-sm-6 mb-3">
+                <label class="mr-2" *ngIf="currentSub">SUB Ledger</label>
+                <label class="mr-2" *ngIf="currentMaster">Master Ledger</label>
+                <label class="mr-2" *ngIf="currentSuper">Super Ledger</label>
+                <label class="mr-2" *ngIf="currentAgent">Agent Ledger</label>
+                <label class="mr-2" *ngIf="currentClient">Client Ledger</label>
+                <div ngbDropdown class="input-group w-100">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Select or search..."
+                    [(ngModel)]="searchQuery"
+                    ngbDropdownToggle
+                    (focus)="onFocus()"
+                    (input)="onSearchChange(searchQuery)"
+                    aria-labelledby="searchDropdown"
+                  />
+                  <div ngbDropdownMenu aria-labelledby="searchDropdown" class="w-100 dropdown-scroll">
+                    <div *ngIf="filteredOptions.length > 0">
+                      <button class="dropdown-item" (click)="onSelectOption('All')">All</button>
+                      <button
+                        class="dropdown-item"
+                        *ngFor="let option of filteredOptions"
+                        (click)="onSelectOption(option)"
+                      >
+                        {{ option.code + ' ' + option.name }}
+                      </button>
+                    </div>
+                    <div *ngIf="filteredOptions.length === 0 && searchQuery">
+                      <span class="dropdown-item text-muted">No results found</span>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+  
+              <div class="col-md-4 col-sm-6 mb-3">
+                <label class="mr-2">Collection</label>
+                <select class="form-select" [(ngModel)]="selectedCollection" aria-label="Select collection">
+                  <option *ngFor="let collection of collections" [value]="collection.id">
+                    {{ collection.code + collection.name }}
+                  </option>
+                </select>
+              </div>
+              <div class="col-md-4 col-sm-6 mb-3">
+                <label class="form-label">Amount</label>
+                <input type="number" class="form-control" [(ngModel)]="amount" placeholder="Amount">
+              </div>
+  
+              <div class="col-md-4 col-sm-6 mb-3">
+                <label class="form-label">Payment Type</label>
+                <select class="form-select"  [(ngModel)]="paymentType" aria-label="Default select example">
+                  <option value="Paid">PAYMENT-DENA</option>
+                  <option value="Received">RECEIPT-LENA</option>
+                </select>
+              </div>
+  
+              <div class="col-md-4 col-sm-6">
+                <div class="mb-3">
+                  <label class="form-label">Remark</label>
+                  <div class="mb-3">
+                    <input type="text" class="form-control"  [(ngModel)]="remark" placeholder="Remark">
+                  </div>
+                </div>
+              </div>
+  
+              <div class="col-md-4 col-sm-6">
+                <div class="mb-3">
+                  <label class="form-label"></label>
+                  <button class="btn btn-success" style="margin-top: 30px;" (click)="getTotalCashTransaction()">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+        <div class="card-body">
+          <div class="table-responsive table-responsive-sm">
+            <table class="table  table-striped table-sm">
+              <thead>
+                <tr>
+                  <th style="width: 50px;">#</th>
+                  <th style="max-width: 50px;">Date</th>
+                  <th>Collection Name</th>
+                  <th>Debit</th>
+                  <th>Credit</th>
+                  <th>Balance</th>
+                  <th>Payment Type</th>
+                  <th>Remark</th>
+                </tr>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th style="color: blue;" fo>Total Amount</th>
+                  <th>{{ totalDebit | number: '1.2-2' }}</th>
+                  <th>{{ totalCredit | number: '1.2-2' }}</th>
+                  <th [ngClass]="totalBalance >= 0 ? 'positive-balance' : 'negative-balance'">{{ totalBalance | number: '1.2-2' }}</th>
+                  <th></th>
+                  <th></th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let entry of paginatedLedgerData; let i = index" style="width: 100%;">
+
+                  <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+                  <td>{{ entry.date| date: 'dd/MM/yyyy' }}</td>
+                  <td>{{ entry.collectionName }}</td>
+                  <td>{{ entry.debit | number: '1.2-2' }}</td>
+                  <td>{{ entry.credit | number: '1.2-2' }}</td>
+                  <td >{{ entry.balance | number: '1.2-2' }}</td>
+                  <!-- [ngStyle]="{ color: entry.balance >= 0 ? 'green' : 'red' }" -->
+                  <td>{{ entry.paymentType }}</td>
+                  <td>{{ entry.remark }}</td>
+                </tr>
+              </tbody>
+              <tr *ngIf="paginatedLedgerData.length ==0">
+                <td colspan="7" style="text-align: center;">No Data Available</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+  
+        <div class="card-footer">
+          <div class="d-flex justify-content-end">
+            <ngb-pagination
+              [collectionSize]="totalItems"
+              [(page)]="currentPage"
+              [pageSize]="itemsPerPage"
+              (pageChange)="onPageChange($event)">
+            </ngb-pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

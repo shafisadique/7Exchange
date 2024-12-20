@@ -1,0 +1,13 @@
+.sidebar-top-header {
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+
+    /* Flexbox for centering */
+    display: flex;
+    justify-content: center; /* Horizontal centering */
+    align-items: center; /* Vertical centering */
+    height: 100%; /* Ensure it fills the parent's height */
+}

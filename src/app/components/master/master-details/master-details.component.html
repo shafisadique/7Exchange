@@ -1,0 +1,157 @@
+<div class="row" >
+    <div class="col-md-12 stretch-card">
+      <div class="card">
+          <div class="card-header">
+          <button class="btn btn-pill btn-info  btn-air-info " placement="top" routerLinkActive="active" (click)="createMasterData()">ADD <i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+          <button class="btn btn-pill btn-air-success btn-success"  ngbTooltip="btn btn-pill btn-air-success btn-success"  style="margin: 5px;" (click)="setAllActive()" >All Active   </button>
+          <button type="button" class="btn btn-pill btn-air-danger btn-danger" ngbTooltip="btn btn-pill btn-air-danger btn-danger" style="margin: 5px;" (click)="setAllDeActive()">All DeActive</button>
+          <button type="button" class="btn btn-pill btn-air-danger btn-primary" routerLink="/master/master-limit" ngbTooltip="btn btn-pill btn-air-danger btn-primary" style="margin: 5px;" *ngIf="currentUserRole === UserRole" >Update Limit</button>
+        
+        </div>
+        <div class="card-body">
+          <div class="table-responsive ">
+            <div class="left">
+                <div class="item-per-page">
+                  <!-- <h6 style="margin-top: 15px;">Per Pages: </h6> -->
+                  <select class="form-select form-control-sm" [(ngModel)]="pageSize" (change)="onPageSizeChange()" style="margin-bottom: 5px;">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                  </select>
+                </div>
+                <div class="search">
+                  <h6 style="margin-top: 15px;">Search: </h6>
+                  <input type="search" class="form-control form-control-sm">
+                </div>
+            </div>
+            <table class="table table-bordered table-hover table-sm table-striped">
+              <thead>
+              <tr>
+                <th style="text-align: center;">#</th>
+                <th (click)="sortData('code')">Code 
+                 
+                </th>
+                <th (click)="sortData('name')">Name 
+                  <i [class]="getSortIcon('name')"></i>
+                </th>
+                <th (click)="sortData('reference')">Reference
+                  <i [class]="getSortIcon('reference')"></i>
+                </th>
+                <th (click)="sortData('password')">Password
+                </th>
+                <!-- [class]="sort.column === 'password' && sort.direction == 'asc' ? ' fa fa-arrow-up' :'fa fa-arrow-down'" -->
+                <th (click)="sortData('contactNo')">Contact No
+                  <i [class]="getSortIcon('contactNo')"></i>
+                </th>
+                <th (click)="sortData('current')">Limit
+                  <i [class]="getSortIcon('limit')"></i>
+                </th>
+                <th  (click)="sortData('share')">Share
+                  <i [class]="getSortIcon('share')"></i>
+                </th>
+                <!-- <th (click)="sortData('cShare')">Casino Share
+                  <i [class]="sort.column === 'cShare' && sort.direction == 'asc' ? ' fa fa-arrow-up' :'fa fa-arrow-down'"></i> 
+                </th>
+                <th (click)="sortData('icShare')">IC Share
+                  <i [class]="sort.column === 'icShare' && sort.direction == 'asc' ? ' fa fa-arrow-up' :'fa fa-arrow-down'"></i> 
+                </th>
+                <th (click)="sortData('mShare')">Mobile Share
+                  <i [class]="sort.column === 'mShare' && sort.direction == 'asc' ? ' fa fa-arrow-up' :'fa fa-arrow-down'"></i> 
+                </th> -->
+                <th (click)="sortData('mc')">MC
+                  <i [class]="getSortIcon('cc')"></i>
+                </th>
+                <th (click)="sortData('share')">SC
+                  <i [class]="getSortIcon('cc')"></i>
+                </th>
+                <th (click)="sortData('cc')">CC
+                  <i [class]="getSortIcon('cc')"></i>
+                </th>
+                <th>Status
+                </th>
+              </tr>
+              </thead>
+              <tbody>
+  
+              <!-- <tr *ngFor="let row of data?.data?.content;index as i"> -->
+              <tr *ngFor="let row of data;index as i">
+                <td>
+                  <div class="dropdown" style="text-align: center;">
+                    <div ngbDropdown>
+                    <!-- {{(i+1) + (data.data.number *25)}} -->
+                      <button class="btn btn-link btn-sm" id="dropdownButtonLg" ngbDropdownToggle> {{ (currentPage - 1) * pageSize + i + 1 }}</button>
+                      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <button ngbDropdownItem (click)="getSingleId(row.id)">Edit</button>
+                        <button ngbDropdownItem (click)="getSuperLimit(row.id)">Super Agent Limit</button>
+                        <button ngbDropdownItem >inActive</button>
+                      </div>
+                    </div></div>
+                </td>
+                <td>{{row.code}}</td>
+                <td>{{row.name}}</td>
+                <td>{{row.reference}}</td>
+                <td>{{row.password}}</td>
+                <td>{{row.contactNo}}</td>
+                <td>{{row.currentLimit}}</td>
+                <td>{{row.share}}</td>
+                <!-- <td>{{row.cshare}}</td>
+                <td>{{row.icShare}}</td>
+                <td>{{row.mobileShare}}</td> -->
+                <td>{{row.mc}}</td>
+                <td>{{row.mc}}</td>
+                <td>{{row.cc}}</td>
+                <td>
+                  <span class="badge"
+                        [ngClass]="row.status ? 'bg-success':'bg-danger'">{{row.status ? 'Active' : 'Inactive' }}</span>
+                </td>
+              </tr>
+              <tr *ngIf="data.length == 0">
+                <td colspan="12" style="text-align: center; font-family: 'Roboto', sans-serif;">No Data Available</td>
+              </tr>
+              </tbody>
+              <tfoot>
+              <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <!-- <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th> -->
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+
+              </tfoot>
+            </table>
+          </div>
+        </div>
+        <div class="card-footer">
+            <div class="right">
+              <ngb-pagination
+                [collectionSize]="totalCount"
+                [pageSize]="pageSize"
+                [(page)]="currentPage"
+                [maxSize]="2"
+                [rotate]="true"
+                (pageChange)="onPageChange($event)"
+                [boundaryLinks]="false"
+              ></ngb-pagination>
+              <div class="page-info" >Page {{ currentPage }} of {{ totalCount / pageSize }} Pages ({{ totalCount }} items)</div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <!-- <app-toasts [toasts]="toastService.toasts"></app-toasts> -->
+  

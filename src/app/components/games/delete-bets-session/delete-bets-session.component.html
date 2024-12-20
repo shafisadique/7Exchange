@@ -1,0 +1,36 @@
+<div class="container" style="margin: auto;">
+    <div class="card">
+      <div class="card-header bg-warning text-dark">
+        <h5>Match Cancel Bets</h5>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover table-striped">
+            <thead>
+              <tr>
+                <th>Sr. No.</th>
+                <th>Client</th>
+                <th>Team</th>
+                <th>Amount</th>
+                <th>Rate</th>
+                <th>Mode</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let bet of bets">
+                <td>{{ bet.sNo }}</td>
+                <td>{{ bet.client }}</td>
+                <td>{{ bet.team }}</td>
+                <td>{{ bet.amount }}</td>
+                <td>{{ bet.rate }}</td>
+                <td>{{ bet.mode }}</td>
+                <td>{{ bet.date }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  

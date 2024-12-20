@@ -1,0 +1,63 @@
+<div class="row" >
+<div class="container" style="margin: auto;" >
+  <div class="col-md-12 stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover table-striped table-sm">
+            <thead>
+            <tr>
+              <th style="text-align: center;width: 50px;">#</th>
+              <th>SNo</th>
+              <th>Game</th>
+              <th >Name</th>
+              <th>Date Time</th>
+              <th>Match Type</th>
+              </tr>
+            </thead>
+            <tbody>
+
+            <tr *ngFor="let game of gameDetails;index as i">
+              <td>
+                <div class="dropdown">
+                  <div ngbDropdown >
+                    <button class="btn btn-link " id="dropdownButtonLg" ngbDropdownToggle style="height: auto;"></button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                      <button ngbDropdownItem (click)="matchAndSessionPosition(game.id)">Match & Session Position</button>
+                      <button ngbDropdownItem (click)="sessionPlusMinusSelect(game.id)">Session Plus Minus</button>
+
+                      <button ngbDropdownItem (click)="displayMatchSession(game.id)">Display Match & Session Bets</button>
+                      <button ngbDropdownItem (click)="displayMatchBets(game.id)">Display Match Bets</button>
+                      <button ngbDropdownItem (click)="viewSessionReports(game.id)">Display Session Reports</button>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>{{ game.SNo }}</td>
+              <td>{{ game.code }}</td>
+              <td>{{ game.name }}</td>
+              <td>{{ game.dateTime }}</td>
+              <td>{{ game.matchType }}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+
+
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+
+      </div>
+      <div class="card-footer">
+        <div class="right">
+
+      </div>
+    </div>
+  </div>
+</div>

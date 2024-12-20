@@ -1,0 +1,62 @@
+.table-responsive{
+    white-space: nowrap;
+
+}
+::-webkit-scrollbar{
+    width: 15px;
+    height: 10px;
+  }
+  
+  .right{
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+  }
+
+  .left {
+    display: flex;
+    align-items: center; /* Ensures vertical alignment */
+    justify-content: space-between; /* Spreads the items across the available space */
+    width: 100%; /* Ensures the container takes full available width */
+  }
+  
+  .item-per-page, .search {
+    display: flex;
+    align-items: center; /* Aligns the text and the form elements vertically */
+    margin-right: 20px; /* Adds spacing between the two sections */
+  }
+  
+  .item-per-page select, .search input {
+    margin-left: 10px; /* Adds some space between label and the form element */
+  }
+  
+  // .item-per-page{
+  //   display: flex;
+
+  // }
+  th{
+    padding-left: 0.25rem  !important;
+    padding-right: 0.25rem  !important;
+    background-color: #2F3C4E !important; 
+    color: white !important;
+    border: none;
+  }
+  td{
+    padding-left: 0.25rem  !important;
+    padding-right: 0.25rem  !important;
+    font-size: medium;
+  }
+  #dropdownButtonLg{
+    font-family: 'Poppins',sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+::-webkit-scrollbar-track{
+    background: none !important;
+  }
+  ::-webkit-scrollbar-thumb{
+    opacity: 0.5 !important;
+    background-color: #6571ff !important;
+    border-radius: 10px !important;
+  }
